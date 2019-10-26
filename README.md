@@ -280,7 +280,7 @@ the function returns.
 * **Returns**
   * Sum of pay owed to all employees for all dates, as a number
 * **Behavior**
-  * Using `wagesEarnedOnDate`, accumulate the value of all dates worked by the
+  * Using `allWagesFor`, accumulate the value of all dates worked by the
     employee in the record used as context. Amount should be returned as a
     number.
 
