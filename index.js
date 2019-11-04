@@ -34,14 +34,25 @@ function wagesEarnedOnDate(employeeRecord, date){
     return hoursWorkedOnDate(employeeRecord, date) * employeeRecord.payPerHour
 }
 
-function allWagesFor(record){
-
+function allWagesFor(employeeRecord){
+    let findAllDates = employeeRecord.timeInEvents.map(function(findDate){
+        return findDate.date
+    })
+    return findAllDates.reduce(function(start, date){
+        return start + wagesEarnedOnDate(employeeRecord, date)
+    }, 0)
 }
 
 function findEmployeeByFirstName(array, firstName){
+    return array.find(function(findName){
+        return findName.firstName === firstName
+    })
 
 }
 
 function calculatePayroll(array){
+    return array.reduce(function(start, payRecords){
+        return start + allWagesFor(payRecords)
+    }, 0)
 
 }
