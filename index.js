@@ -30,8 +30,8 @@ function hoursWorkedOnDate(employeeRecord, date){
     return (timeOut - timeIn) / 100
 }
 
-function wagesEarnedOnDate(record, date){
-
+function wagesEarnedOnDate(employeeRecord, date){
+    return hoursWorkedOnDate(employeeRecord, date) * employeeRecord.payPerHour
 }
 
 function allWagesFor(record){
