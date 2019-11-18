@@ -42,6 +42,9 @@ describe("The payroll system", function () {
       expect(createEmployeeRecords).to.exist
     })
 
+////////
+
+
     describe("createEmployeeRecords", function () {
       let employeeRecords;
 
@@ -62,6 +65,8 @@ describe("The payroll system", function () {
       })
     })
   })
+
+  /////////
 
   describe("it adds a timeIn event Object to an employee's record of timeInEvents when provided an employee record and Date/Time String and returns the updated record", function () {
 
@@ -94,6 +99,8 @@ describe("The payroll system", function () {
       })
     })
   })
+
+  ///
 
   describe("it adds a timeOut event Object to an employee's record of timeOutEvents when provided an employee record and Date/Time String and returns the updated record", function () {
 
@@ -314,7 +321,7 @@ describe("The payroll system", function () {
               timesOutRecordRow[1].forEach(function(timeOutStamp){
                 createTimeOutEvent(rec, timeOutStamp)
               })
-            }) 
+            })
             expect(calculatePayroll(employeeRecords)).to.eql(11880)
           })
         })
@@ -322,5 +329,3 @@ describe("The payroll system", function () {
     })
   })
 })
-
-
