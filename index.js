@@ -60,9 +60,8 @@ function allWagesFor(employeeObject){
   })
   let allWages = allTimeOuts.map(dateForm => {
     return wagesEarnedOnDate(employeeObject, dateForm)
-  });
-  let accumulatedWage
-  allWages.reduce(wage => {
-    array.reduce(function(total, currentValue, currentIndex, arr), initialValue)
-  })
+  });;
+  return allWages.reduce((accumulator, wage) => {
+    return accumulator + wage
+  }, 0)
 };
