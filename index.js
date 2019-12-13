@@ -54,14 +54,28 @@ function wagesEarnedOnDate(employeeObject, dateForm){
 };
 
 function allWagesFor(employeeObject){
-  let allTimeOuts = [];
-  employeeObject.timeOutEvents.map(event => {
-    allTimeOuts.push(event.date);
+  let allTimeOuts = employeeObject.timeOutEvents.map(event => {
+    return event.date;
   })
   let allWages = allTimeOuts.map(dateForm => {
     return wagesEarnedOnDate(employeeObject, dateForm)
-  });;
+  });
   return allWages.reduce((accumulator, wage) => {
-    return accumulator + wage
+    return accumulator + wage;
   }, 0)
 };
+
+function findEmployeeByFirstName(srcArray, firstName){
+  return srcArray.find(employee => {
+    return employee.firstName === firstName
+  });
+};
+
+function calculatePayroll(employeeArray) {
+  return employeeArray.reduce((payrollTotal, employee) => {
+    return allWagesFor(employee) + payrollTotal;
+  }, 0)
+};
+
+
+
