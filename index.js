@@ -16,3 +16,12 @@ const createEmployeeRecords = (array) => {
     });
     return newArray
 };
+
+const createTimeInEvent = (object, dateStamp) => {
+    let obj = {
+        type: "TimeIn",
+        hour: dateStamp,
+        date: dateStamp
+    }
+    return object.timeInEvents << obj
+}
