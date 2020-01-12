@@ -18,10 +18,32 @@ const createEmployeeRecords = (array) => {
 };
 
 const createTimeInEvent = (object, dateStamp) => {
+    var h = dateStamp.split(" ")[1]
+    var d = dateStamp.split(" ")[0]
     let obj = {
         type: "TimeIn",
-        hour: dateStamp,
-        date: dateStamp
-    }
-    return object.timeInEvents << obj
-}
+        hour: parseInt(h),
+        date: d
+    };
+    object.timeInEvents.push(obj)
+    return object
+};
+
+const createTimeOutEvent = (object, dateStamp) => {
+    var h = dateStamp.split(" ")[1]
+    var d = dateStamp.split(" ")[0]
+    let obj = {
+        type: "TimeOut",
+        hour: parseInt(h),
+        date: d
+    };
+    object.timeOutEvents.push(obj)
+    return object
+};
+
+const hoursWorkedOnDate = (record, date) => {
+    let employeeData = record.date
+    let timeWorked = (employeeData.timeOutEvents.getTime() - date.timeInEvents.getTime())
+    return timeWorked
+};
+
