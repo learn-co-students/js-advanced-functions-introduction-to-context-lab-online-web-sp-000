@@ -42,8 +42,8 @@ const createTimeOutEvent = (object, dateStamp) => {
 };
 
 const hoursWorkedOnDate = (record, date) => {
-    let employeeData = record.date
-    let timeWorked = (employeeData.timeOutEvents.getTime() - date.timeInEvents.getTime())
+    let inTime = record.find( a => a == date)
+    let outTime = record.datetimeOutEvents
+    let timeWorked = (outTime[1] - inTime[1])
     return timeWorked
 };
-
