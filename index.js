@@ -42,8 +42,15 @@ const createTimeOutEvent = (object, dateStamp) => {
 };
 
 const hoursWorkedOnDate = (record, date) => {
-    let inTime = record.find( a => a == date)
-    let outTime = record.datetimeOutEvents
-    let timeWorked = (outTime[1] - inTime[1])
-    return timeWorked
+    let timeOne = record.timeInEvents.find(timeIn => {
+       if (timeIn.date === date) {
+          return timeIn
+       };
+   }); 
+   let timeTwo = record.timeOutEvents.find(timeOut => {
+       if (timeOut.date === date) {
+          return timeOut
+       };
+   }); 
+   return (timeTwo.hour - timeOne.hour)/100
 };
