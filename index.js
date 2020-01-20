@@ -54,3 +54,13 @@ const hoursWorkedOnDate = (record, date) => {
    }); 
    return (timeTwo.hour - timeOne.hour)/100
 };
+
+const wagesEarnedOnDate = (record, date) => {
+    let rateHours = hoursWorkedOnDate(record, date);
+    let payRate = record.payPerHour * rateHours;
+    return payRate;
+};
+
+const allWagesFor = (record) => {
+    let allDates = record.forEach()
+}
