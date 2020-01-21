@@ -62,7 +62,27 @@ const wagesEarnedOnDate = (record, date) => {
 };
 
 const allWagesFor = (record) => {
-    let allDates = record.timeInEvents.map(time => time.split(" ")[0]);
-    let allWages = wagesEarnedOnDate(record, allDates);
-    return allWages
+    let dates = record.timeInEvents.map(date => {
+        return date.date
+    });
+    const payroll = dates.reduce((wages, date) => {
+        let allWages = wagesEarnedOnDate(record, date);
+        return allWages + wages
+    }, 0);
+    return payroll
+};
+
+const findEmployeeByFirstName = (records, employeeName) => {
+    let names = records.map(name => {
+        return name.firstName
+    });
+    let matchedName = names.find(name => name == employeeName);
+    return matchedName
+};
+
+const calculatePayroll = (records) => {
+    let payroll = records.map(record => {
+        return allWagesFor(record);
+    });
+    return payroll
 };
