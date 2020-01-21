@@ -73,16 +73,15 @@ const allWagesFor = (record) => {
 };
 
 const findEmployeeByFirstName = (records, employeeName) => {
-    let names = records.map(name => {
-        return name.firstName
+    let names = records.find(record => {
+        return record.firstName == employeeName
     });
-    let matchedName = names.find(name => name = employeeName);
-    return matchedName
+    return names
 };
 
 const calculatePayroll = (records) => {
-    let payroll = records.map(record => {
-        return allWagesFor(record);
-    });
+    let payroll = records.reduce((acc, record) => {
+        return allWagesFor(record) + acc;
+    }, 0);
     return payroll
 };
