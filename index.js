@@ -62,5 +62,7 @@ const wagesEarnedOnDate = (record, date) => {
 };
 
 const allWagesFor = (record) => {
-    let allDates = record.forEach()
-}
+    let allDates = record.timeInEvents.map(time => time.split(" ")[0]);
+    let allWages = wagesEarnedOnDate(record, allDates);
+    return allWages
+};
