@@ -76,7 +76,7 @@ const findEmployeeByFirstName = (records, employeeName) => {
     let names = records.map(name => {
         return name.firstName
     });
-    let matchedName = names.find(name => name == employeeName);
+    let matchedName = names.find(name => name = employeeName);
     return matchedName
 };
 
