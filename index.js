@@ -34,3 +34,22 @@ function createTimeEvent(record, date, type, fcn){
   return record;
 }
 
+function hoursWorkedOnDate(record, date){
+  //employee["timeInEvents"] = [];
+  //employee["timeOutEvents"] = [];
+  
+  return record.timeInEvents.find(x => x.date = date);
+}
+
+
+
+
+
+describe("hoursWorkedOnDate", function () {
+      it("calculates that the employee worked 2 hours", function () {
+        cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 1000])
+        updatedBpRecord = createTimeInEvent(cRecord, "0044-03-15 0900")
+        updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-15 1100")
+        expect(hoursWorkedOnDate(cRecord, "0044-03-15")).to.equal(2)
+      })
+    })
