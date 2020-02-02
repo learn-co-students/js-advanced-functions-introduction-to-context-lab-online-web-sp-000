@@ -24,13 +24,13 @@ function createTimeOutEvent(record, date){
  return createTimeEvent(record, date, "TimeOut", record.timeOutEvents);
 }
 
-function createTimeEvent(record, date, type, fcn){
+function createTimeEvent(record, date, type, array){
   let timeArray = date.split(" ");
   let day = timeArray[0];
   let hour = timeArray[1];
   
-  //fcn is time event in/out
-  fcn.push({"type": type,"date": day, "hour": parseInt(hour)});
+  //array is time event in/out
+  array.push({"type": type,"date": day, "hour": parseInt(hour)});
   
   return record;
 }
