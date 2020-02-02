@@ -45,21 +45,18 @@ function wagesEarnedOnDate(record, date){
 }
 
 function allWagesFor(record){
-  console.log(record);
-  return record;
-  //{"type": type,"date": day, "hour": parseInt(hour)}
+    let wages = 0;
+  let dates = [];
   
-  //extract all dates.
+  //extracts all dates.
+  record.timeInEvents.map(x => dates.push(x.date));
+  
   //for each date, calc wage.
+  dates.forEach(date => {wages = wages + wagesEarnedOnDate(record, date)})
+  
+  return wages;
+  
 }
 
 
-
-describe("hoursWorkedOnDate", function () {
-      it("calculates that the employee worked 2 hours", function () {
-        cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 1000])
-        updatedBpRecord = createTimeInEvent(cRecord, "0044-03-15 0900")
-        updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-15 1100")
-        expect(hoursWorkedOnDate(cRecord, "0044-03-15")).to.equal(2)
-      })
-    })
+function calculatePayroll(){}
