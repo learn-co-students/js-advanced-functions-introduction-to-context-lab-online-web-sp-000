@@ -59,4 +59,19 @@ function allWagesFor(record){
 }
 
 
-function calculatePayroll(){}
+function calculatePayroll(employees){
+  let payroll = 0;
+  employees.forEach(x => {payroll = payroll + allWagesFor(x)});
+  return payroll;
+}
+
+function findEmployeeByFirstName(allRecords, name){
+  //let loki = findEmployeeByFirstName(emps, "Loki")
+
+  let record = allRecords.find(x => x.firstName = name);
+  return record;
+}
+
+
+
+
