@@ -29,19 +29,29 @@ function createTimeEvent(record, date, type, fcn){
   let day = timeArray[0];
   let hour = timeArray[1];
   
+  //fcn is time event in/out
   fcn.push({"type": type,"date": day, "hour": parseInt(hour)});
   
   return record;
 }
 
 function hoursWorkedOnDate(record, date){
-  //employee["timeInEvents"] = [];
-  //employee["timeOutEvents"] = [];
-  
-  return record.timeInEvents.find(x => x.date = date);
+  let hours = (record.timeOutEvents.find(x => x.date === date).hour - record.timeInEvents.find(x => x.date === date).hour)/100;
+  return hours;
 }
 
+function wagesEarnedOnDate(record, date){
+  return hoursWorkedOnDate(record, date) * record.payPerHour;
+}
 
+function allWagesFor(record){
+  console.log(record);
+  return record;
+  //{"type": type,"date": day, "hour": parseInt(hour)}
+  
+  //extract all dates.
+  //for each date, calc wage.
+}
 
 
 
