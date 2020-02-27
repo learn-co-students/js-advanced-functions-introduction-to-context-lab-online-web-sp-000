@@ -5,6 +5,4 @@ function createEmployeeRecord(array) {
         let timeInEvents = []
         let timeOutEvents = []
     })
-    
-        
 }
