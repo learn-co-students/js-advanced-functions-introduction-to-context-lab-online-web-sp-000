@@ -55,8 +55,7 @@ function allWagesFor(employee) {
 }
 
 function calculatePayroll(employees){
-  let employeeNames = employees.map(e => {return e.firstName})
-  let allWages = employeeNames.map(e => allWagesFor(findEmployeeByFirstName(employees, e)))
+  let allWages = employees.map(e => allWagesFor(e))
   return allWages.reduce( (total, w) => w + total, 0)
 }
 
