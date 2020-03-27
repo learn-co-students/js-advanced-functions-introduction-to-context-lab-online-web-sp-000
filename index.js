@@ -43,3 +43,26 @@ function hoursWorkedOnDate(employee, searchDate) {
     const hoursWorked = timeOutResult.hour - timeInResult.hour
     return hoursWorked / 100
 }
+
+function wagesEarnedOnDate(employee, date) {
+    return hoursWorkedOnDate(employee, date) * employee.payPerHour
+
+}
+
+function allWagesFor(employee) {
+    let daysWorked = employee.timeInEvents.map(a => a.date)
+    let pay = daysWorked.reduce(function(accumulator, workDay) {
+        return accumulator + wagesEarnedOnDate(employee, workDay) 
+    }, 0)
+    return pay
+}
+
+function findEmployeeByFirstName(srcArray, firstName) {
+    return srcArray.find(person => person.firstName === firstName)
+}
+
+function calculatePayroll(array) {
+    return array.reduce(function(accumulator, currentValue) {
+        return accumulator + allWagesFor(currentValue)
+    }, 0)
+}
