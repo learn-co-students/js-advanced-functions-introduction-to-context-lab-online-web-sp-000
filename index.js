@@ -90,7 +90,9 @@ function allWagesFor(emp){
         
     // });
 
-    // emp.timeInEvents.map(function(e){
+     emp.timeInEvents.map(function(e){
+        console.log(e)
+     })
     //     let newD = e.date 
     //     emp.timeOutEvents.map(function(e){
     //         console.log(newD)
