@@ -43,13 +43,28 @@ function createEmployeeRecords(employee){
      return hours * record.payPerHour
  }
 
- function allWagesFor(record){
-    
-
+function allWagesFor(employee){
+    let eligibleDates = employee.timeInEvents.map(function(e){
+    return e.date 
+    })
+        let payable = eligibleDates.reduce(function(memo, date){       
+        return memo + wagesEarnedOnDate(employee, date)
+        },0)
+            return payable
  }
 
 
+function calculatePayroll(records){
+    return records.reduce(function(memo, record){
+        return memo + allWagesFor(record)
+    },0)
+}
 
+function findEmployeeByFirstName(srcArray, firstName){
 
+    let name = srcArray.filter(s => s.firstName === firstName)
+    console.log("name", name)
+    return name[0]
+}
 
 
