@@ -51,7 +51,13 @@ function hoursWorkedOnDate(employee, specificDate) {
     let outEvent = employee.timeOutEvents.find(function (e) {
         return e.date === specificDate
     })
-    return (outEvent.hour - inEvent.hour) / 100
+    try {
+        return (outEvent.hour - inEvent.hour) / 100
+    } catch (e) {
+        if (e instanceof EvalError) {
+            alert(e.name + '+ ' + e.message)
+        }
+    }
 }
 
 function wagesEarnedOnDate(employee, specificDate) {
