@@ -1,5 +1,3 @@
-// const array = ['Sam', 'Johnson', 'janitor', 5];
-
 function createEmployeeRecord(row) {
     return {
         firstName: row[0],
