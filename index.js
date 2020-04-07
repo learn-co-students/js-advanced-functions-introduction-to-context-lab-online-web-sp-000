@@ -19,7 +19,7 @@ function createEmployeeRecords(employee){
 }
 
  function createTimeInEvent(record, date){
-    let day = date.split(" ")[0]   
+    let date = date.split(" ")[0]   
     
     return record 
  }
