@@ -9,8 +9,6 @@ function createEmployeeRecord(row) {
     }
 }
 
-// createEmployeeRecord(array);
-
 function createEmployeeRecords(employeeRowData) {
     return employeeRowData.map(function(row) {
         return createEmployeeRecord(row)
