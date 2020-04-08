@@ -15,12 +15,7 @@ function createEmployeeRecord(arr){
 
 
 function createEmployeeRecords(arr){
-    let employeeRecords = []
-
-    employeeRecords.push(createEmployeeRecord(arr[0]))
-    employeeRecords.push(createEmployeeRecord(arr[1]))
-
-    return employeeRecords
+   return arr.map( emp => createEmployeeRecord(emp))
 }
 
 
@@ -63,15 +58,9 @@ function hoursWorkedOnDate(emp, date){
     let inEvent = emp.timeInEvents.find(element => element.date === date)
     let outEvent = emp.timeOutEvents.find(element => element.date === date)
 
-    let num = outEvent.hour - inEvent.hour
+    let num = (outEvent.hour - inEvent.hour)/100
 
-    if (num > 1200){
-        num =- 1200
-        return num / 100
-    }
-    else {
-        return num / 100
-    }
+    return num 
 
 }
 
@@ -84,20 +73,29 @@ function wagesEarnedOnDate(emp, date){
 }
 
 function allWagesFor(emp){
-   // console.log(emp)
 
-    // emp.timeInEvents.forEach(event => {
-        
-    // });
-
-     emp.timeInEvents.map(function(e){
-        console.log(e)
+    let inTime = emp.timeInEvents.map(function(e){
+        return e.date
      })
-    //     let newD = e.date 
-    //     emp.timeOutEvents.map(function(e){
-    //         console.log(newD)
-            //return e.find( match => match.date == newD)
-       // })
-  //  })
+     
+     let results = inTime.reduce(function(total,day){
+        return total + wagesEarnedOnDate(emp, day)
+     }, 0)
+    
+     return results
+}
+
+function calculatePayroll(arr){
+
+    return arr.reduce(function(total, emp){
+        let grab = allWagesFor(emp)
+        return total + grab
+    }, 0)
 
 }
+
+function findEmployeeByFirstName(arr, name){
+   return arr.find(emp => emp.firstName === name)
+}
+
+
