@@ -50,6 +50,7 @@ function hoursWorkedOnDate(employeeRecordObj, dateString) {
   //"0044-03-15"
   let timeOutE = employeeRecordObj.timeOutEvents.find(obj => obj.date === dateString.split(' ')[0]); 
   let timeInE = employeeRecordObj.timeInEvents.find(obj => obj.date === dateString.split(' ')[0]); 
+  
   let hourOut = parseInt(timeOutE.hour.toString().slice(0,-2));
   let hourIn = parseInt(timeInE.hour.toString().slice(0,-2));
   let hours = hourOut - hourIn;
@@ -62,22 +63,31 @@ function wagesEarnedOnDate(employeeRecordObj, dateString) {
 }
 
 
-//returns pay owed for all dates for this employee
 function allWagesFor(employeeRecordObj) {
-  // collect array of all date strings for employee
-  let datesArr = employeeRecordObj.timeInEvents.map(o => {return o.date;}) // returns ['0044-03-15']
+  let datesArr = employeeRecordObj.timeInEvents.map(o => {return (o.date + ' ' + o.hour);}) // returns ['0044-03-15 900']
   let s = 0;
 
-  let allWages = datesArr.reduce((s, el) => {
-    console.log(el);
+  let allWages = datesArr.reduce((function(s, el) {
     return wagesEarnedOnDate(employeeRecordObj, el) + s;
-  });
-  console.log(allWages);
+  }),s);
   return allWages;
 };
 
-let cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 1000])
-createTimeInEvent(cRecord, "0044-03-15 0900")
-createTimeOutEvent(cRecord, "0044-03-15 1100")
-allWagesFor(cRecord);
+function findEmployeeByFirstName(allEmployeeArrayOfObjects, firstNameString) {
+  return allEmployeeArrayOfObjects.find(obj => obj.firstName === firstNameString);
+}
+
+function calculatePayroll(arrayOfEmployeeObjects) {
+  let s = 0;
+  return arrayOfEmployeeObjects.reduce((function(s,el) {
+    return allWagesFor(el) + s;
+  }),s);
+}
+
+// let cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 1000])
+// createTimeInEvent(cRecord, "0044-03-16 0900")
+// createTimeOutEvent(cRecord, "0044-03-16 1100")
+// createTimeInEvent(cRecord, "0044-03-15 0900")
+// createTimeOutEvent(cRecord, "0044-03-15 1100")
+// allWagesFor(cRecord);
 
