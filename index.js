@@ -36,11 +36,11 @@ function wagesEarnedOnDate(employee, dateStamp) {
 }
 
 function allWagesFor(employee) {
-  return employee.timeInEvents.reduce((totalPay, day) => {totalPay + wagesEarnedOnDate(employee, day.date)}, 0);
+  return employee.timeInEvents.reduce((totalPay, day) => totalPay + wagesEarnedOnDate(employee, day.date), 0);
 }
 
 function calculatePayroll(employees) {
-  
+  return employees.reduce((totalPay, employee) => totalPay + allWagesFor(employee), 0);
 }
 
 function findEmployeeByFirstName(employees, firstName) {
