@@ -146,198 +146,198 @@ describe("The payroll system", function () {
     })
   })
 
-  describe("Given an employee record with a date-matched timeInEvent and timeOutEvent", function () {
+  // describe("Given an employee record with a date-matched timeInEvent and timeOutEvent", function () {
 
-    it("hoursWorkedOnDate calculates the hours worked when given an employee record and a date", function () {
-      expect(hoursWorkedOnDate).to.exist
-    })
+  //   it("hoursWorkedOnDate calculates the hours worked when given an employee record and a date", function () {
+  //     expect(hoursWorkedOnDate).to.exist
+  //   })
 
-    describe("hoursWorkedOnDate", function () {
-      it("calculates that the employee worked 2 hours", function () {
-        cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 1000])
-        updatedBpRecord = createTimeInEvent(cRecord, "0044-03-15 0900")
-        updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-15 1100")
-        expect(hoursWorkedOnDate(cRecord, "0044-03-15")).to.equal(2)
-      })
-    })
-  })
+  //   describe("hoursWorkedOnDate", function () {
+  //     it("calculates that the employee worked 2 hours", function () {
+  //       cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 1000])
+  //       updatedBpRecord = createTimeInEvent(cRecord, "0044-03-15 0900")
+  //       updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-15 1100")
+  //       expect(hoursWorkedOnDate(cRecord, "0044-03-15")).to.equal(2)
+  //     })
+  //   })
+  // })
 
-  describe("Given an employee record with a date-matched timeInEvent and timeOutEvent", function () {
+  // describe("Given an employee record with a date-matched timeInEvent and timeOutEvent", function () {
 
-    it("wagesEarnedOnDate multiplies the hours worked by the employee's rate per hour", function () {
-      expect(wagesEarnedOnDate).to.exist
-    })
+  //   it("wagesEarnedOnDate multiplies the hours worked by the employee's rate per hour", function () {
+  //     expect(wagesEarnedOnDate).to.exist
+  //   })
 
-    describe("wagesEarnedOnDate", function () {
-      it("calculates that the employee earned 54 dollars", function () {
-        cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 27])
-        updatedBpRecord = createTimeInEvent(cRecord, "0044-03-15 0900")
-        updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-15 1100")
-        expect(wagesEarnedOnDate(cRecord, "0044-03-15")).to.equal(54)
-      })
-    })
-  })
+  //   describe("wagesEarnedOnDate", function () {
+  //     it("calculates that the employee earned 54 dollars", function () {
+  //       cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 27])
+  //       updatedBpRecord = createTimeInEvent(cRecord, "0044-03-15 0900")
+  //       updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-15 1100")
+  //       expect(wagesEarnedOnDate(cRecord, "0044-03-15")).to.equal(54)
+  //     })
+  //   })
+  // })
 
-  describe("Given an employee record with MULTIPLE date-matched timeInEvent and timeOutEvent", function () {
+  // describe("Given an employee record with MULTIPLE date-matched timeInEvent and timeOutEvent", function () {
 
-    it("allWagesFor aggregates all the dates' wages and adds them together", function () {
-      expect(allWagesFor).to.exist
-    })
+  //   it("allWagesFor aggregates all the dates' wages and adds them together", function () {
+  //     expect(allWagesFor).to.exist
+  //   })
 
-    describe("allWagesFor", function () {
-      it("calculates that the employee earned 378 dollars", function () {
-        cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 27])
-        // Earns 324
-        updatedBpRecord = createTimeInEvent(cRecord, "0044-03-14 0900")
-        updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-14 2100")
-        // Earns 54
-        updatedBpRecord = createTimeInEvent(cRecord, "0044-03-15 0900")
-        updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-15 1100")
-        // 324 + 54
-        expect(allWagesFor(cRecord)).to.equal(378)
-      })
-    })
-  })
+  //   describe("allWagesFor", function () {
+  //     it("calculates that the employee earned 378 dollars", function () {
+  //       cRecord = createEmployeeRecord(["Julius", "Caesar", "General", 27])
+  //       // Earns 324
+  //       updatedBpRecord = createTimeInEvent(cRecord, "0044-03-14 0900")
+  //       updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-14 2100")
+  //       // Earns 54
+  //       updatedBpRecord = createTimeInEvent(cRecord, "0044-03-15 0900")
+  //       updatedBpRecord = createTimeOutEvent(cRecord, "0044-03-15 1100")
+  //       // 324 + 54
+  //       expect(allWagesFor(cRecord)).to.equal(378)
+  //     })
+  //   })
+  // })
 
-  describe("Given an array of multiple employees", function () {
-    it("calculatePayroll aggregates all the dates' wages and adds them together", function () {
-      expect(calculatePayroll).to.exist
-    })
+  // describe("Given an array of multiple employees", function () {
+  //   it("calculatePayroll aggregates all the dates' wages and adds them together", function () {
+  //     expect(calculatePayroll).to.exist
+  //   })
 
-    describe("calculatePayroll", function () {
-      it("calculates that the employees earned 770 dollars", function () {
-        let rRecord = createEmployeeRecord(["Rafiki", "", "Aide", 10])
-        let sRecord = createEmployeeRecord(["Simba", "", "King", 100])
+  //   describe("calculatePayroll", function () {
+  //     it("calculates that the employees earned 770 dollars", function () {
+  //       let rRecord = createEmployeeRecord(["Rafiki", "", "Aide", 10])
+  //       let sRecord = createEmployeeRecord(["Simba", "", "King", 100])
 
-        let sTimeData = [
-          ["2019-01-01 0900", "2019-01-01 1300"], // 4 * 100 = 400
-          ["2019-01-02 1000", "2019-01-02 1300"]  // 3 * 100 = 300 ===> 700 total
-        ]
+  //       let sTimeData = [
+  //         ["2019-01-01 0900", "2019-01-01 1300"], // 4 * 100 = 400
+  //         ["2019-01-02 1000", "2019-01-02 1300"]  // 3 * 100 = 300 ===> 700 total
+  //       ]
 
-        let rTimeData = [
-          ["2019-01-11 0900", "2019-01-11 1300"], // 4 * 10 = 40
-          ["2019-01-12 1000", "2019-01-12 1300"]  // 3 * 10 = 40 ===> 70 total ||=> 770
-        ]
+  //       let rTimeData = [
+  //         ["2019-01-11 0900", "2019-01-11 1300"], // 4 * 10 = 40
+  //         ["2019-01-12 1000", "2019-01-12 1300"]  // 3 * 10 = 40 ===> 70 total ||=> 770
+  //       ]
 
-        sTimeData.forEach(function (d) {
-          let [dIn, dOut] = d
-          sRecord = createTimeInEvent(sRecord, dIn)
-          sRecord = createTimeOutEvent(sRecord, dOut)
-        })
+  //       sTimeData.forEach(function (d) {
+  //         let [dIn, dOut] = d
+  //         sRecord = createTimeInEvent(sRecord, dIn)
+  //         sRecord = createTimeOutEvent(sRecord, dOut)
+  //       })
 
-        rTimeData.forEach(function (d, i) {
-          let [dIn, dOut] = d
-          rRecord = createTimeInEvent(rRecord, dIn)
-          rRecord = createTimeOutEvent(rRecord, dOut)
-        })
+  //       rTimeData.forEach(function (d, i) {
+  //         let [dIn, dOut] = d
+  //         rRecord = createTimeInEvent(rRecord, dIn)
+  //         rRecord = createTimeOutEvent(rRecord, dOut)
+  //       })
 
-        let employees = [sRecord, rRecord]
-        let grandTotalOwed = employees.reduce((m, e) => m + allWagesFor(e), 0)
-        expect(grandTotalOwed).to.equal(calculatePayroll(employees))
-      })
-    })
-  })
+  //       let employees = [sRecord, rRecord]
+  //       let grandTotalOwed = employees.reduce((m, e) => m + allWagesFor(e), 0)
+  //       expect(grandTotalOwed).to.equal(calculatePayroll(employees))
+  //     })
+  //   })
+  // })
 
-  describe("runs payroll using the mock data provided by Ultron data systems", function () {
-    describe("Dependent functions: createEmployeeRecords", function () {
-      describe("takes CSV data, returns an array of employee records", function () {
-        it("exists", function () {
-          expect(createEmployeeRecords).to.exist
-        })
+  // describe("runs payroll using the mock data provided by Ultron data systems", function () {
+  //   describe("Dependent functions: createEmployeeRecords", function () {
+  //     describe("takes CSV data, returns an array of employee records", function () {
+  //       it("exists", function () {
+  //         expect(createEmployeeRecords).to.exist
+  //       })
 
-        it("returns an Array with 2 records for Loki and Natalia", function () {
-          let src = [
-            ["Loki", "Laufeysson-Odinsson", "HR Representative", 35],
-            ["Natalia", "Romanov", "CEO", 150]
-          ]
-          expect(createEmployeeRecords(src).length).to.eql(2)
-          expect(createEmployeeRecords(src).map(function (e) {
-            return e.firstName
-          })).to.eql(["Loki", "Natalia"])
-        })
-      })
-    })
+  //       it("returns an Array with 2 records for Loki and Natalia", function () {
+  //         let src = [
+  //           ["Loki", "Laufeysson-Odinsson", "HR Representative", 35],
+  //           ["Natalia", "Romanov", "CEO", 150]
+  //         ]
+  //         expect(createEmployeeRecords(src).length).to.eql(2)
+  //         expect(createEmployeeRecords(src).map(function (e) {
+  //           return e.firstName
+  //         })).to.eql(["Loki", "Natalia"])
+  //       })
+  //     })
+  //   })
 
-    describe("Dependent functions: findEmployeeByFirstName", function () {
-      it("exists", function () {
-        expect(findEmployeeByFirstName).to.exist
-      })
+  //   describe("Dependent functions: findEmployeeByFirstName", function () {
+  //     it("exists", function () {
+  //       expect(findEmployeeByFirstName).to.exist
+  //     })
 
-      it("finds \"Loki\" ", function () {
-        let src = [
-          ["Loki", "Laufeysson-Odinsson", "HR Representative", 35],
-          ["Natalia", "Romanov", "CEO", 150]
-        ]
-        let emps = createEmployeeRecords(src)
-        let loki = findEmployeeByFirstName(emps, "Loki")
-        expect(loki.familyName).to.equal("Laufeysson-Odinsson")
-      })
-    })
+  //     it("finds \"Loki\" ", function () {
+  //       let src = [
+  //         ["Loki", "Laufeysson-Odinsson", "HR Representative", 35],
+  //         ["Natalia", "Romanov", "CEO", 150]
+  //       ]
+  //       let emps = createEmployeeRecords(src)
+  //       let loki = findEmployeeByFirstName(emps, "Loki")
+  //       expect(loki.familyName).to.equal("Laufeysson-Odinsson")
+  //     })
+  //   })
 
-    describe("Full Payroll Test", function () {
-      /* Imported data courtesy of Ultron Consulting services
-       *
-       * Why go for smart when you can go for artificially intelligent? -- Ultron
-       * Consulting
-       */
-      const csvDataEmployees = [
-        ["Thor", "Odinsson", "Electrical Engineer", 45],
-        ["Loki", "Laufeysson-Odinsson", "HR Representative", 35],
-        ["Natalia", "Romanov", "CEO", 150],
-        ["Darcey", "Lewis", "Intern", 15],
-        ["Jarvis", "Stark", "CIO", 125],
-        ["Anthony", "Stark", "Angel Investor", 300]
-      ]
+  //   describe("Full Payroll Test", function () {
+  //     /* Imported data courtesy of Ultron Consulting services
+  //      *
+  //      * Why go for smart when you can go for artificially intelligent? -- Ultron
+  //      * Consulting
+  //      */
+  //     const csvDataEmployees = [
+  //       ["Thor", "Odinsson", "Electrical Engineer", 45],
+  //       ["Loki", "Laufeysson-Odinsson", "HR Representative", 35],
+  //       ["Natalia", "Romanov", "CEO", 150],
+  //       ["Darcey", "Lewis", "Intern", 15],
+  //       ["Jarvis", "Stark", "CIO", 125],
+  //       ["Anthony", "Stark", "Angel Investor", 300]
+  //     ]
 
-      const csvTimesIn = [
-        ["Thor", ["2018-01-01 0800", "2018-01-02 0800", "2018-01-03 0800"]],
-        ["Loki", ["2018-01-01 0700", "2018-01-02 0700", "2018-01-03 0600"]],
-        ["Natalia", ["2018-01-03 1700", "2018-01-05 1800", "2018-01-03 1300"]],
-        ["Darcey", ["2018-01-01 0700", "2018-01-02 0800", "2018-01-03 0800"]],
-        ["Jarvis", ["2018-01-01 0500", "2018-01-02 0500", "2018-01-03 0500"]],
-        ["Anthony", ["2018-01-01 1400", "2018-01-02 1400", "2018-01-03 1400"]]
-      ]
+  //     const csvTimesIn = [
+  //       ["Thor", ["2018-01-01 0800", "2018-01-02 0800", "2018-01-03 0800"]],
+  //       ["Loki", ["2018-01-01 0700", "2018-01-02 0700", "2018-01-03 0600"]],
+  //       ["Natalia", ["2018-01-03 1700", "2018-01-05 1800", "2018-01-03 1300"]],
+  //       ["Darcey", ["2018-01-01 0700", "2018-01-02 0800", "2018-01-03 0800"]],
+  //       ["Jarvis", ["2018-01-01 0500", "2018-01-02 0500", "2018-01-03 0500"]],
+  //       ["Anthony", ["2018-01-01 1400", "2018-01-02 1400", "2018-01-03 1400"]]
+  //     ]
 
-      const csvTimesOut = [
-        ["Thor", ["2018-01-01 1600", "2018-01-02 1800", "2018-01-03 1800"]],
-        ["Loki", ["2018-01-01 1700", "2018-01-02 1800", "2018-01-03 1800"]],
-        ["Natalia", ["2018-01-03 2300", "2018-01-05 2300", "2018-01-03 2300"]],
-        ["Darcey", ["2018-01-01 1300", "2018-01-02 1300", "2018-01-03 1300"]],
-        ["Jarvis", ["2018-01-01 1800", "2018-01-02 1800", "2018-01-03 1800"]],
-        ["Anthony", ["2018-01-01 1600", "2018-01-02 1600", "2018-01-03 1600"]]
-      ]
+  //     const csvTimesOut = [
+  //       ["Thor", ["2018-01-01 1600", "2018-01-02 1800", "2018-01-03 1800"]],
+  //       ["Loki", ["2018-01-01 1700", "2018-01-02 1800", "2018-01-03 1800"]],
+  //       ["Natalia", ["2018-01-03 2300", "2018-01-05 2300", "2018-01-03 2300"]],
+  //       ["Darcey", ["2018-01-01 1300", "2018-01-02 1300", "2018-01-03 1300"]],
+  //       ["Jarvis", ["2018-01-01 1800", "2018-01-02 1800", "2018-01-03 1800"]],
+  //       ["Anthony", ["2018-01-01 1600", "2018-01-02 1600", "2018-01-03 1600"]]
+  //     ]
 
-      describe("from several imported CSV structures", function () {
-        let employeeRecords
+  //     describe("from several imported CSV structures", function () {
+  //       let employeeRecords
 
-        describe("calculatePayroll", function() {
-          it("exists", function () {
-            expect(calculatePayroll).to.exist
-          })
+  //       describe("calculatePayroll", function() {
+  //         it("exists", function () {
+  //           expect(calculatePayroll).to.exist
+  //         })
 
-          it("correctly sums the payroll burden to $11,880 when passed an array of employee records", function () {
-            let employeeRecords = createEmployeeRecords(csvDataEmployees)
-            employeeRecords.forEach(function (rec) {
-              let timesInRecordRow = csvTimesIn.find(function (row) {
-                return rec.firstName === row[0]
-              })
+  //         it("correctly sums the payroll burden to $11,880 when passed an array of employee records", function () {
+  //           let employeeRecords = createEmployeeRecords(csvDataEmployees)
+  //           employeeRecords.forEach(function (rec) {
+  //             let timesInRecordRow = csvTimesIn.find(function (row) {
+  //               return rec.firstName === row[0]
+  //             })
 
-              let timesOutRecordRow = csvTimesOut.find(function (row) {
-                return rec.firstName === row[0]
-              })
+  //             let timesOutRecordRow = csvTimesOut.find(function (row) {
+  //               return rec.firstName === row[0]
+  //             })
 
-              timesInRecordRow[1].forEach(function(timeInStamp){
-                createTimeInEvent(rec, timeInStamp)
-              })
+  //             timesInRecordRow[1].forEach(function(timeInStamp){
+  //               createTimeInEvent(rec, timeInStamp)
+  //             })
 
-              timesOutRecordRow[1].forEach(function(timeOutStamp){
-                createTimeOutEvent(rec, timeOutStamp)
-              })
-            })
-            expect(calculatePayroll(employeeRecords)).to.eql(11880)
-          })
-        })
-      })
-    })
-  })
+  //             timesOutRecordRow[1].forEach(function(timeOutStamp){
+  //               createTimeOutEvent(rec, timeOutStamp)
+  //             })
+  //           })
+  //           expect(calculatePayroll(employeeRecords)).to.eql(11880)
+  //         })
+  //       })
+  //     })
+  //   })
+  // })
 })
