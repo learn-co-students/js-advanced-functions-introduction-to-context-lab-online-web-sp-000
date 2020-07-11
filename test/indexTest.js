@@ -266,7 +266,9 @@ describe("The payroll system", function () {
       it("finds \"Loki\" ", function () {
         let src = [
           ["Loki", "Laufeysson-Odinsson", "HR Representative", 35],
-          ["Natalia", "Romanov", "CEO", 150]
+          ["Natalia", "Romanov", "CEO", 150],
+          ["David", "Lee", "Power Forward", 130],
+          ["James", "Harden", "Shooting Guard", 350]
         ]
         let emps = createEmployeeRecords(src)
         let loki = findEmployeeByFirstName(emps, "Loki")
