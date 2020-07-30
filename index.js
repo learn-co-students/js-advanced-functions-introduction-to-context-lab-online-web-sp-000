@@ -47,3 +47,28 @@ let hoursWorkedOnDate = function(employee, soughtDate){
 
     return (outEvent.hour - inEvent.hour) / 100
 }
+
+let wagesEarnedOnDate = function(employee, dateForm) {
+    let hoursWorked = hoursWorkedOnDate(employee, dateForm)
+    return hoursWorked * employee.payPerHour
+}
+
+let allWagesFor = function(employee) {
+    let dates = employee.timeInEvents.map(function(e) {return e.date})
+    return dates.reduce((memo, date) => {
+        return memo + wagesEarnedOnDate(employee, date)
+    }, 0) 
+
+}
+
+let findEmployeeByFirstName = function(srcArray, firstName) {
+    return srcArray.find(function(rec){
+      return rec.firstName === firstName
+    })
+  }
+  
+  let calculatePayroll = function(arrayOfEmployeeRecords){
+      return arrayOfEmployeeRecords.reduce(function(memo, rec){
+          return memo + allWagesFor(rec)
+      }, 0)
+  }
