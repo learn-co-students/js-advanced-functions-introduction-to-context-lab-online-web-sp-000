@@ -44,7 +44,13 @@ function hoursWorkedOnDate(employeeRecord, date) {
   const timeOut = employeeRecord.timeOutEvents.find(
     (event) => event.date === date
   );
-
+  if (!!timeOut) {
+    try {
+      throw new Error("Testing this error!");
+    } catch (e) {
+      console.error(e.name + ": " + e.message);
+    }
+  }
   return (timeOut.hour - timeIn.hour) / 100;
 }
 
