@@ -41,9 +41,13 @@ function createTimeOutEvent(record, str) {
     return record;
 }
 
-function hoursWorkedOnDate(record) {
+function hoursWorkedOnDate(record, date) {
     let time = (record.timeOutEvents[0].hour - record.timeInEvents[0].hour)
     return (time / 100);
+
+    // let correctTimeOutEvent = record.timeOutEvents.find( e => e.date === date);
+    // let correctTimeInEvent = record.timeInEvents.find(e => e.date === date);
+    // return ((correctTimeOutEvent.hour - correctTimeInEvent.hour) / 100);
 }
 
 function wagesEarnedOnDate(record) {
@@ -60,16 +64,16 @@ function allWagesFor(record) {
     return (hoursWorked * record.payPerHour);
 }
 
+function findEmployeeByFirstName(emps, name) {
+    console.log(emps);
+    // console.log(name);
+    let employee = emps.find( e => e.firstName === name);
+    console.log(employee);
+    return employee;
+}
+
 function calculatePayroll(array) {
     return array.reduce(function(accu, employee) {
         return accu + allWagesFor(employee);
     }, 0);
-}
-
-function findEmployeeByFirstName(emps, name) {
-    console.log(emps);
-    console.log(name);
-    let employee = emps.find( e => e.firstName === name);
-    console.log(employee.firstName);
-    return employee.firstName;
 }
