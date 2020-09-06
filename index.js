@@ -72,6 +72,12 @@ function findEmployeeByFirstName(emps, name) {
     return employee;
 }
 
+// let findEmployeeByFirstName = function(srcArray, firstName) {
+//     return srcArray.find(function(rec){
+//       return rec.firstName === firstName
+//     })
+//   }
+
 function calculatePayroll(array) {
     return array.reduce(function(accu, employee) {
         return accu + allWagesFor(employee);
