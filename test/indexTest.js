@@ -307,6 +307,16 @@ describe("The payroll system", function () {
         ["Anthony", ["2018-01-01 1600", "2018-01-02 1600", "2018-01-03 1600"]]
       ]
 
+      /* 
+        Hours worked:
+         Thor: 8, 10, 10 (28) * 45 = $1,260
+         Loki: 10, 11, 12 (33) * 35 = $1,155
+         Natalia: 6, 5, 10 (21) << Punched in/out twice on 01-03 for overlapping periods. Should really be 5,10 for (15) * 150 = $2,250
+         Darcey: 6, 5, 5 (16) * 15 = $240
+         Jarvis: 13, 13, 13 (39) * 125 = $4,875
+         Anthony: 2, 2, 2 (6) * 300 = $1,800
+      */
+
       describe("from several imported CSV structures", function () {
         let employeeRecords
 
@@ -334,7 +344,7 @@ describe("The payroll system", function () {
                 createTimeOutEvent(rec, timeOutStamp)
               })
             })
-            expect(calculatePayroll(employeeRecords)).to.eql(11880)
+            expect(calculatePayroll(employeeRecords)).to.eql(11580)
           })
         })
       })
