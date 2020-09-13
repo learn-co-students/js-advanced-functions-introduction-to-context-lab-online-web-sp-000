@@ -48,3 +48,30 @@ function hoursWorkedOnDate(record, date) {
   hours = (clockOut.hour - clockIn.hour) / 100;
   return hours;
 }
+
+function wagesEarnedOnDate(record, date) {
+  let wages = hoursWorkedOnDate(record, date) * record.payPerHour;
+  return wages;
+}
+
+function allWagesFor(record) {
+  let workedDates = record.timeInEvents.map(function (key) {
+    return key.date;
+  });
+  let totalWages = workedDates.reduce(function (memo, date) {
+    return memo + wagesEarnedOnDate(record, date);
+  }, 0);
+  return totalWages;
+}
+
+function findEmployeeByFirstName(records, firstName) {
+  return records.find(function (record) {
+    return record.firstName === firstName;
+  }, 0);
+}
+
+function calculatePayroll(records) {
+  return records.reduce(function (memo, record) {
+    return memo + allWagesFor(record);
+  }, 0);
+}
