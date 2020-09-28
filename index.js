@@ -53,33 +53,44 @@ function createTimeOutEvent(record, timeOut) {
     return record
 }
 
-function hoursWorkedOnDate(record, date) {
-    let timeIn = 0
-    let timeOut = 0
-    for (const timeInEvent of record.timeInEvents) {
-        if (timeInEvent.date === date) {
-            timeIn = timeInEvent.hour
+let hoursWorkedOnDate = function(employee, soughtDate){
+    // let timeIn = 0
+    // let timeOut = 0
+    // for (const timeInEvent of record.timeInEvents) {
+    //     if (timeInEvent.date === date) {
+    //         timeIn = timeInEvent.hour
 
-        }
-    }
-
-    for (const timeOutEvent of record.timeOutEvents) {
-        //debugger
-        if (timeOutEvent.date === date) {
-            timeOut = timeOutEvent.hour
-
-        }
-    }
-
-    // if (record.firstName === "Natalia") {
-    //     console.log("Time out " + timeOut)
-    //     console.log("Time in " + timeIn)
+    //     }
     // }
+
+    // for (const timeOutEvent of record.timeOutEvents) {
+    //     //debugger
+    //     if (timeOutEvent.date === date) {
+    //         timeOut = timeOutEvent.hour
+
+    //     }
+    // }
+
+    // // if (record.firstName === "Natalia") {
+    // //     console.log("Time out " + timeOut)
+    // //     console.log("Time in " + timeIn)
+    // // }
     
 
-    return (timeOut - timeIn) / 100
+    // return (timeOut - timeIn) / 100
 
+    
+        let inEvent = employee.timeInEvents.find(function(e){
+            return e.date === soughtDate
+        })
+    
+        let outEvent = employee.timeOutEvents.find(function(e){
+            return e.date === soughtDate
+        })
+    
+        return (outEvent.hour - inEvent.hour) / 100
 }
+
 
 function wagesEarnedOnDate(record, date) {
     let hoursWorked = hoursWorkedOnDate(record, date)
