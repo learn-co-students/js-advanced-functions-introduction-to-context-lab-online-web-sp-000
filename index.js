@@ -88,33 +88,24 @@ function wagesEarnedOnDate(record, date) {
 }
 
 function allWagesFor(record) {
-    // let totalWages = 0
-    // for (let i = 0; i < record.timeOutEvents.length; i++) {
-    //     totalWages = totalWages + wagesEarnedOnDate(record, record.timeOutEvents[i].date)
-    //     //debugger
-    // }
-    // return totalWages
-    //let totalWages = 0
-    return record.timeOutEvents.reduce(function (totalWages, wage, index) {
+
+    return record.timeOutEvents.reduce(function (totalWages, timeOutEvent) {
         //debugger
-        wage = wagesEarnedOnDate(record, record.timeOutEvents[index].date)
-        console.log(record.firstName + " Daily wage: " + wage + " Hours worked: " + hoursWorkedOnDate(record, record.timeOutEvents[index].date) );
+        let wage = wagesEarnedOnDate(record, timeOutEvent.date)
+        console.log(record.firstName + " Daily wage: " + wage + " Hours worked: " + hoursWorkedOnDate(record, timeOutEvent.date) );
         return totalWages + wage
     }, 0)
 }
 
 function calculatePayroll(employees) {
 
-    // let totalPayroll = 0
-    // for (const employee of employees) {
-    //     totalPayroll += allWagesFor(employee)
-    // }
 
-    // return totalPayroll
-    return employees.reduce(function (totalPayroll, empPayroll, index) {
-        empPayroll = allWagesFor(employees[index])
-        console.log("Payroll for " + employees[index].firstName + " " + empPayroll)
-        return totalPayroll + empPayroll
+    return employees.reduce(function (totalPayroll, employee) {
+
+        let employeeWage = allWagesFor(employee)
+
+        console.log("Payroll for " + employee.firstName + " " + employeeWage)
+        return totalPayroll + employeeWage
     }, 0)
 }
 
