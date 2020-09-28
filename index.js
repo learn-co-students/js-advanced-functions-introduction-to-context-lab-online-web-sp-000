@@ -113,7 +113,7 @@ function calculatePayroll(employees) {
     // return totalPayroll
     return employees.reduce(function (totalPayroll, empPayroll, index) {
         empPayroll = allWagesFor(employees[index])
-        console.log(empPayroll)
+        console.log("Payroll for " + employees[index].firstName + " " + empPayroll)
         return totalPayroll + empPayroll
     }, 0)
 }
