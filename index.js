@@ -26,7 +26,7 @@ function createEmployeeRecords(employeeArrays){
     return employeeRecords
 }
 
-//
+
 function createTimeEvent(timeDateStamp, event){
 
     let timeEventObject = {}
@@ -51,8 +51,6 @@ function createTimeEvent(timeDateStamp, event){
 
     return timeEventObject
 }
-//
-
 
 
 function createTimeInEvent(employee, timeInDateStamp){
