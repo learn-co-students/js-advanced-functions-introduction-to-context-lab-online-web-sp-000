@@ -107,4 +107,15 @@ function allWagesFor(employeeRecord){
 }
 
 
+function calculatePayroll(employees){
+    let grandTotalOwed = employees.reduce((m, e) => m + allWagesFor(e), 0)
 
+    return grandTotalOwed
+}
+
+
+function findEmployeeByFirstName(employees, firstName){
+    const foundEmployee = employees.find(employee => employee.firstName == firstName)
+
+    return foundEmployee
+}
