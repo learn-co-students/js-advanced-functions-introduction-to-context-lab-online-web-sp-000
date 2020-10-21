@@ -70,9 +70,41 @@ function createTimeOutEvent(employee, timeOutDateStamp){
 }
 
 
+function hoursWorkedOnDate(employeeRecord, timeEventDate){
+
+    const timeInFound = employeeRecord.timeInEvents.find(element => element.date === timeEventDate)
+    const timeOutFound = employeeRecord.timeOutEvents.find(element => element.date === timeEventDate)
+
+    const hoursWorked = (timeOutFound.hour / 100) - (timeInFound.hour / 100)
+    
+    return hoursWorked
+
+}    
 
 
+function wagesEarnedOnDate(employeeRecord, timeEventDate){
 
+    const hoursWorked = hoursWorkedOnDate(employeeRecord, timeEventDate)
+    const wagesEarned = hoursWorked * employeeRecord.payPerHour
+
+    return wagesEarned
+
+}
+
+
+function allWagesFor(employeeRecord){
+ 
+    const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+    const hoursWorkedArray = employeeRecord.timeInEvents.map(timeInEvent => hoursWorkedOnDate(employeeRecord, timeInEvent.date))
+
+    const totalHoursWorked = hoursWorkedArray.reduce(reducer)
+
+    const allWages = totalHoursWorked * employeeRecord.payPerHour
+
+    return allWages
+
+}
 
 
 
