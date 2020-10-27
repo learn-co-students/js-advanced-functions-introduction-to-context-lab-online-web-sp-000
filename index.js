@@ -49,12 +49,11 @@ function wagesEarnedOnDate(employee, date){
 
 function allWagesFor(employee){
   let times = employee.timeInEvents;
-  let total = 0;
-  let allWages = times.reduce(function(current){
-    console.log("date is" + current.date);
-    return wagesEarnedOnDate(employee, current.date);
+  let allWages = 0;
+  times.forEach(function(t){
+    allWages += wagesEarnedOnDate(employee, t.date);
   })
-  console.log("allWages is " + allWages);
+  return allWages;
 }
 
 function calculatePayroll(employees){
@@ -63,4 +62,9 @@ function calculatePayroll(employees){
     payroll += allWagesFor(e);
   })
   return payroll;
+}
+
+function findEmployeeByFirstName(employees, find){
+  return employees.find(e => e.firstName === find)
+  
 }
