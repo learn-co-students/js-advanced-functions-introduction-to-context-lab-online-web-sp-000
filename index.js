@@ -46,3 +46,13 @@ let createEmployeeRecords = function(arrayOfArrays) {
 
  // find the timeInEvent object that matches the date from the argument
  // calculate the hours between timeIn and TimeOut
+
+ let hoursWorkedOnDate = function(employeeRecord, dateStamp) {
+    let employeeRecordDate = employeeRecord["timeInEvents"]["date"]
+    debugger;
+    let foundDate = employeeRecordDate.find(object => object === dateStamp)
+ }
+
+ // incoming arrays
+// incoming object (1 employee record): {firstName: "Gray", familyName: "Worm", title: "Security", payPerHour: 1, timeInEvents: [{type: "TimeIn", hour: 1400, date: 2014-02-28}], timeOutEvents: []}
+// incoming dateStamp: "2014-02-28 1400"
