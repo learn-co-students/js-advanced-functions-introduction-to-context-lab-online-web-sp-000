@@ -1,4 +1,4 @@
-let createEmployeeRecord = function(array) {
+function createEmployeeRecord(array) {
     return {
         firstName: array[0],
         familyName: array[1],
@@ -12,7 +12,7 @@ let createEmployeeRecord = function(array) {
 // ["Gray", "Worm", "Security", 1] // incoming array
 // {firstName: "Gray", familyName: "Worm", title: "Security", payPerHour: 1, timeInEvents: [], timeOutEvents: []} // return a JS Object
 
-let createEmployeeRecords = function(arrayOfArrays) {
+function createEmployeeRecords(arrayOfArrays) {
     return arrayOfArrays.map(array => createEmployeeRecord(array));
 }
 
@@ -21,7 +21,7 @@ let createEmployeeRecords = function(arrayOfArrays) {
 //       ["bartholomew", "simpson", "scamp", 3]
  //     ]
 
- let createTimeInEvent = function(employeeRecord, dateStamp) {
+ function createTimeInEvent(employeeRecord, dateStamp) {
     let dateStampArray = dateStamp.split(' ')
     employeeRecord["timeInEvents"].push({
         type: "TimeIn",
@@ -34,7 +34,7 @@ let createEmployeeRecords = function(arrayOfArrays) {
  // incoming object (1 employee record): {firstName: "Gray", familyName: "Worm", title: "Security", payPerHour: 1, timeInEvents: [], timeOutEvents: []}, "2014-02-28 1400"
  // output: {firstName: "Gray", familyName: "Worm", title: "Security", payPerHour: 1, timeInEvents: [{type: "TimeIn", hour: 1400, date: 2014-02-28}], timeOutEvents: []}
 
- let createTimeOutEvent = function(employeeRecord, dateStamp) {
+ function createTimeOutEvent(employeeRecord, dateStamp) {
      let dateStampArray = dateStamp.split(' ')
      employeeRecord["timeOutEvents"].push({
          type: "TimeOut",
@@ -46,22 +46,27 @@ let createEmployeeRecords = function(arrayOfArrays) {
 
  // find the timeInEvent object that matches the date from the argument
  // calculate the hours between timeIn and TimeOut
+ // dateStamp = "0044-03-15"
 
- function hoursWorkedOnDate(employeeRecord, dateStamp) {
-    // debugger;
-    let employeeRecordDate = employeeRecord["timeInEvents"]["date"]
-    console.log("HELLO!", employeeRecord["timeInEvents"][0]["date"])
-    let foundDate = employeeRecordDate.find(object => object === dateStamp)
- }
+ function hoursWorkedOnDate(employeeRecord, date) {
+    // first, find the timeInEvent with a date that matches dateStamp
+    // then, store the hour from that timeInEvent in a variable
+    // then, find the timeOutEvent with a date that matches dateStamp
+    // then, store the hour from that timeOutEvent
+    // then, subtract inHour from outOur and divide by 100
+     let employeeInHour = employeeRecord["timeInEvents"].find(element => element.date === date).hour
+     let employeeOutHour = employeeRecord["timeOutEvents"].find(element => element.date === date).hour
+     return (employeeOutHour - employeeInHour) / 100
+  }
 
  // incoming arrays
 // incoming object (1 employee record): {firstName: "Gray", familyName: "Worm", title: "Security", payPerHour: 1, timeInEvents: [{type: "TimeIn", hour: 1400, date: 2014-02-28}], timeOutEvents: []}
 // incoming dateStamp: "2014-02-28 1400"
 
-let wagesEarnedOnDate = function(employeeRecord, dateStamp) {
-
+let wagesEarnedOnDate = function(employeeRecord, date) {
+    return hoursWorkedOnDate(employeeRecord, date) * employeeRecord["payPerHour"]
 }
 
 let allWagesFor = function(employeeRecord) {
-
+    wagesEarnedOnDate
 }
