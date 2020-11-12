@@ -54,12 +54,11 @@ function createEmployeeRecords(arrayOfEmployeeRecords) {
     // then, find the timeOutEvent with a date that matches dateStamp
     // then, store the hour from that timeOutEvent
     // then, subtract inHour from outOur and divide by 100
-     const employeeInHour = employeeRecord["timeInEvents"].find(element => element.date === date).hour
-     const employeeOutHour = employeeRecord["timeOutEvents"].find(element => element.date === date).hour
-     return (employeeOutHour - employeeInHour) / 100
-  }
+    const employeeInHour = employeeRecord["timeInEvents"].find(element => element.date === date).hour
+    const employeeOutHour = employeeRecord["timeOutEvents"].find(element => element.date === date).hour
+    return (employeeOutHour - employeeInHour) / 100
+}
 
- // incoming arrays
 // incoming object (1 employee record): {firstName: "Gray", familyName: "Worm", title: "Security", payPerHour: 1, timeInEvents: [{type: "TimeIn", hour: 1400, date: 2014-02-28}], timeOutEvents: []}
 // incoming dateStamp: "2014-02-28 1400"
 
@@ -79,9 +78,11 @@ function allWagesFor(employeeRecord) {
 // returns pay owed for all the dates for an employee
 
 function findEmployeeByFirstName(arrayOfEmployeeRecords, firstName) {
-
+    return arrayOfEmployeeRecords.find(element => element.firstName === firstName)
 }
 
 function calculatePayroll(arrayOfEmployeeRecords) {
-
+    return arrayOfEmployeeRecords.reduce((accumulator, currentEmployee) => {
+        return accumulator + allWagesFor(currentEmployee);
+    }, 0);
 }
