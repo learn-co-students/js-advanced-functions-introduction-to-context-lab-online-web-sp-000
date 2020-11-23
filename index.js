@@ -35,9 +35,10 @@ function createTimeOutEvent(employee, date){
 }
 
 function hoursWorkedOnDate(employee, date){
-    let timeOutString =  employee.timeOutEvents[0].hour.toString().split('').slice(0,2).join('')
-    let timeInString = employee.timeInEvents[0].hour.toString().split('').slice(0,1).join('')
-    return timeOutString - timeInString;
+    console.log(employee)
+    let timeIn = employee.timeInEvents.find(events => events.date == date);
+    let timeOut = employee.timeOutEvents.find(events => events.date == date);
+    return (timeOut.hour - timeIn.hour) / 100
 }
 
 function wagesEarnedOnDate(employee, date){
@@ -45,22 +46,21 @@ function wagesEarnedOnDate(employee, date){
 }
 
 function allWagesFor(employee){
-    let timeArray = employee.timeInEvents.concat(employee.timeOutEvents);
- //    [
- //     { type: 'TimeIn', hour: 900, date: '0044-03-14' },
- //     { type: 'TimeIn', hour: 900, date: '0044-03-15' },
- //     { type: 'TimeOut', hour: 2100, date: '0044-03-14' },
- //     { type: 'TimeOut', hour: 1100, date: '0044-03-15' }
- //   ]
-     let firstDateObj = timeArray.filter(d => {return d.date === '0044-03-14' })
-     let secondDateObj = timeArray.filter(d => {return d.date === '0044-03-15' })
-     console.log(firstDate)
- 
-     // console.log(hoursWorkedOnDate(employee, firstDate))
-     // console.log(hoursWorkedOnDate(employee, secondDate))
- 
- // take time in and tim out hours from each date
- // put them into an array
- // add them
- // then multiply by payPerHour
- }
+    let timeInArray = employee.timeInEvents;
+    let timeOutArray = employee.timeOutEvents;
+
+    let dates = employee.timeInEvents.map(event => event.date);
+    return dates.reduce(function(acc, date){
+        return acc + wagesEarnedOnDate(employee, date);
+    }, 0)
+}
+
+function findEmployeeByFirstName(srcArray, firstName){
+    return srcArray.find(name => name.firstName == firstName);
+}
+
+function calculatePayroll(employeeRecords){
+    return employeeRecords.reduce(function(acc, record){
+        return acc + allWagesFor(record)
+    }, 0)
+}
