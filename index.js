@@ -18,7 +18,7 @@ function createTimeInEvent(record, stamp) {
   record.timeInEvents.push({
     type: 'TimeIn',
     date: dateTime[0],
-    hour: parseInt(dateTime[1])
+    hour: parseInt(dateTime[1], 10)
   })
   return record
 }
@@ -28,7 +28,7 @@ function createTimeOutEvent(record, stamp) {
   record.timeOutEvents.push({
     type: 'TimeOut',
     date: dateTime[0],
-    hour: parseInt(dateTime[1])
+    hour: parseInt(dateTime[1], 10)
   })
   return record
 }
@@ -36,7 +36,7 @@ function createTimeOutEvent(record, stamp) {
 function hoursWorkedOnDate(record, date) {
   const a = record.timeInEvents.find((item) => { return item.date === date })
   const b = record.timeOutEvents.find((item) => { return item.date === date })
-  return parseInt(b.hour - a.hour) / 100
+  return parseInt((b.hour - a.hour), 10) / 100
 }
 
 function wagesEarnedOnDate(record, date) {
@@ -44,8 +44,8 @@ function wagesEarnedOnDate(record, date) {
 }
 
 function allWagesFor(record) {
-  const workDays = record.timeInEvents.map((inItem) => {
-    return wagesEarnedOnDate(record, inItem.date)
+  const workDays = record.timeInEvents.map((event) => {
+    return wagesEarnedOnDate(record, event.date)
   })
   return workDays.reduce((total, num) => { return total += num })
 }
