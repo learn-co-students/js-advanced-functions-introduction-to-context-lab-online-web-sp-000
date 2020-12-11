@@ -38,13 +38,12 @@ function createTimeOutEvent(employee, date) {
 function hoursWorkedOnDate(employee, date) {
     let timeIn = employee.timeInEvents.find(obj => obj.date === date)
     let timeOut = employee.timeOutEvents.find(obj => obj.date === date)
-    let timeWorked = (timeOut.hour - timeIn.hour) / 100
-    return timeWorked
+    return (timeOut.hour - timeIn.hour) / 100
+    
 }
 
 function wagesEarnedOnDate(employee, date) {
-    let pay = hoursWorkedOnDate(employee, date) * employee.payPerHour
-    return pay 
+    return hoursWorkedOnDate(employee, date) * employee.payPerHour
 }
 
 function allWagesFor(employee) {
@@ -62,6 +61,5 @@ function findEmployeeByFirstName(srcArray, first) {
 function calculatePayroll(srcArray) {
     let sum = srcArray.map(employee => allWagesFor(employee))
     let wages = sum.reduce(( total, element) => element + total) 
-    return wages
-    
+    return wages   
 }
