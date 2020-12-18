@@ -62,3 +62,13 @@ const allWagesFor = (record => {
     }, 0)
     return totalWages
 })
+
+const findEmployeeByFirstName = ((records, firstName) => {
+    return records.find(record => record.firstName === firstName)
+})
+
+const calculatePayroll = (employeeRecords => {
+    return employeeRecords.reduce((accumulator, employee) => {
+        return accumulator + allWagesFor(employee)
+    }, 0)
+})
