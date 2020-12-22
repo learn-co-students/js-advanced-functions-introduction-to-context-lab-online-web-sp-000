@@ -44,12 +44,12 @@ function wagesEarnedOnDate(employee, date){
 
 function allWagesFor (employee){
     let datesWorked = employee.timeOutEvents.map(e => e.date)
-    let wages = datesWorked.reduce((a, b) => a + wagesEarnedInDate(employee, b))
+    let wages = datesWorked.reduce((a, b) => a + wagesEarnedOnDate(employee, b), 0)
     return wages
 }
 
 function calculatePayroll(employees){
-    return employees.map(e => allWagesFor(e)).reduce((a, b) => a + b)
+    return employees.reduce((a, b) => a + allWagesFor(b), 0)
 }
 
 function findEmployeeByFirstName(employees, name){
