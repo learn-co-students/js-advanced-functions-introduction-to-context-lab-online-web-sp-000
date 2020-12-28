@@ -30,6 +30,11 @@ const createTimeInEvent = (employeeRecord, dateTime) => {
 // Adds a timeOut event obj to an employee's record of timeOutEvents
 // when provided an employee record and Date/Time String and returns 
 // the updated record 
+const createTimeOutEvent = (employeeRecord, dateTime) => {
+    employeeRecord.timeOutEvents = new Array(1).fill({
+      type: "TimeOut", date: dateTime.split(" ")[0], hour: Number(dateTime.split(" ")[1])})
+    return employeeRecord
+}
 
 
 
