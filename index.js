@@ -76,8 +76,9 @@ const allWagesFor = (employeeRecord) => {
 // worked by the employee in the record used as context. 
 // Amount should be returned as a number.
 const calculatePayroll = (employees) => {
-  let amount = employees.reduce( (accumulator, employee) => {
-    accumulator + wagesEarnedOnDate(employee, employee.timeInEvents[0].date), 0 })
+  // employees.reduce( (accumulator, employee) =>
+  //   accumulator + wagesEarnedOnDate(employee, employee.timeInEvents[0].date), 0 )
+  let amount = employees.reduce((m, e) => m + allWagesFor(e), 0)
   return amount
 }
 
