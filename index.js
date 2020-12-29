@@ -18,11 +18,8 @@ const createEmployeeRecords = (record) => {
   return employeeRecords;
 }
 
-// Adds a timeIn event obj to an employee's record of timeInEvents
-// when provided an employee record and Date/Time String and returns 
-// the updated record 
 const createTimeInEvent = (employeeRecord, dateTime) => {
-    employeeRecord.timeInEvents = new Array(1).fill({
+    employeeRecord.timeInEvents.push({
       type: "TimeIn", date: dateTime.split(" ")[0], hour: Number(dateTime.split(" ")[1])})
     return employeeRecord
 }
@@ -31,7 +28,7 @@ const createTimeInEvent = (employeeRecord, dateTime) => {
 // when provided an employee record and Date/Time String and returns 
 // the updated record 
 const createTimeOutEvent = (employeeRecord, dateTime) => {
-    employeeRecord.timeOutEvents = new Array(1).fill({
+    employeeRecord.timeOutEvents.push({
       type: "TimeOut", date: dateTime.split(" ")[0], hour: Number(dateTime.split(" ")[1])})
     return employeeRecord
 }
@@ -41,8 +38,9 @@ const createTimeOutEvent = (employeeRecord, dateTime) => {
 //       hoursWorkedOnDate
 //         2) calculates that the employee worked 2 hours
 const hoursWorkedOnDate = (employeeRecord, date) => {
-  let timeInHour = employeeRecord.timeInEvents[0].hour 
-  let timeOutHour = employeeRecord.timeOutEvents[0].hour
+  
+  let timeInHour = employeeRecord.timeInEvents.find(event => event.date === date).hour
+  let timeOutHour = employeeRecord.timeOutEvents.find(event => event.date === date).hour
   let hoursWorked = (timeOutHour - timeInHour) / 100
   return hoursWorked
 }
@@ -50,11 +48,9 @@ const hoursWorkedOnDate = (employeeRecord, date) => {
 // Given an employee record with a date-matched timeInEvent and timeOutEvent
 //       1) wagesEarnedOnDate multiplies the hours worked by the employee's rate per hour
 //       wagesEarnedOnDate
-//         2) calculates that the employee earned 54 dollars
+//       2) calculates that the employee earned 54 dollars
 const wagesEarnedOnDate = (employeeRecord, date) => {
-  let timeInHour = employeeRecord.timeInEvents[0].hour 
-  let timeOutHour = employeeRecord.timeOutEvents[0].hour
-  let hoursWorked = (timeOutHour - timeInHour) / 100
+  let hoursWorked = hoursWorkedOnDate(employeeRecord, date)
   let wagesEarned = employeeRecord.payPerHour * hoursWorked
   return wagesEarned
 }
@@ -62,8 +58,26 @@ const wagesEarnedOnDate = (employeeRecord, date) => {
 // Given an employee record with MULTIPLE date-matched timeInEvent and timeOutEvent
 //       1) allWagesFor aggregates all the dates' wages and adds them together
 //       allWagesFor
+  // Argument(s)
+  // An employee record Object
+  // Returns
+  // Pay owed for all dates
+  // Behavior
+  // Using wagesEarnedOnDate, accumulate the value of all dates worked by the employee 
+  // in the record used as context. Amount should be returned as a number. HINT: 
+  // You will need to find the available dates somehow...
+  
 const allWagesFor = (employeeRecord) => {
   
+  let timeInWagesEarned = 0
+  employeeRecord.timeInEvents.forEach(e => {
+      timeInWagesEarned += wagesEarnedOnDate(employeeRecord, e.date)
+      console.log(employeeRecord.timeInEvents.length)
+      console.log(timeInWagesEarned)
+  })
+  let payOwed = timeInWagesEarned
+  
+  return payOwed
 }
 
 
