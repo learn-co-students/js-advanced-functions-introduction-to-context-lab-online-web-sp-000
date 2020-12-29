@@ -54,32 +54,32 @@ const wagesEarnedOnDate = (employeeRecord, date) => {
   let wagesEarned = employeeRecord.payPerHour * hoursWorked
   return wagesEarned
 }
-
-// Given an employee record with MULTIPLE date-matched timeInEvent and timeOutEvent
-//       1) allWagesFor aggregates all the dates' wages and adds them together
-//       allWagesFor
-  // Argument(s)
-  // An employee record Object
-  // Returns
-  // Pay owed for all dates
-  // Behavior
-  // Using wagesEarnedOnDate, accumulate the value of all dates worked by the employee 
-  // in the record used as context. Amount should be returned as a number. HINT: 
-  // You will need to find the available dates somehow...
   
 const allWagesFor = (employeeRecord) => {
   
   let timeInWagesEarned = 0
   employeeRecord.timeInEvents.forEach(e => {
       timeInWagesEarned += wagesEarnedOnDate(employeeRecord, e.date)
-      console.log(employeeRecord.timeInEvents.length)
-      console.log(timeInWagesEarned)
   })
   let payOwed = timeInWagesEarned
   
   return payOwed
 }
 
+// calculatePayroll
+// Argument(s)
+// Array of employee records
+// Returns
+// Sum of pay owed to all employees for all dates, as a number
+// Behavior
+// Using wagesEarnedOnDate, accumulate the value of all dates 
+// worked by the employee in the record used as context. 
+// Amount should be returned as a number.
+const calculatePayroll = (employees) => {
+  let amount = employees.reduce( (accumulator, employee) => {
+    accumulator + wagesEarnedOnDate(employee, employee.timeInEvents[0].date), 0 })
+  return amount
+}
 
 
 
