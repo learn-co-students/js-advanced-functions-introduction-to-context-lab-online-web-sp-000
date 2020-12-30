@@ -37,7 +37,6 @@ const createTimeOutEvent = (employeeRecord, dateTime) => {
 }
 
 const hoursWorkedOnDate = (employeeRecord, date) => {
-  
   let timeInHour = employeeRecord.timeInEvents.find(event => event.date === date).hour
   let timeOutHour = employeeRecord.timeOutEvents.find(event => event.date === date).hour
   let hoursWorked = (timeOutHour - timeInHour) / 100
