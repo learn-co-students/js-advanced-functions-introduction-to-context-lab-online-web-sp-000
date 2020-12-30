@@ -13,7 +13,12 @@ const createEmployeeRecord = (employeeRecord) => {
 // Process an Array of Arrays into an Array of employee records
 const createEmployeeRecords = (record) => {
   let employeeRecords = record.map(employeeArray => {
-    return {firstName: employeeArray[0]}
+    return {
+      firstName: employeeArray[0], 
+      familyName: employeeArray[1], 
+      title: employeeArray[2], 
+      payPerHour: employeeArray[3]
+    }
   })
   return employeeRecords;
 }
@@ -80,6 +85,22 @@ const calculatePayroll = (employees) => {
   //   accumulator + wagesEarnedOnDate(employee, employee.timeInEvents[0].date), 0 )
   let amount = employees.reduce((m, e) => m + allWagesFor(e), 0)
   return amount
+}
+
+// Argument(s)
+// srcArray: Array of employee records
+// firstName: String representing a first name held in an employee record
+// Returns
+// Matching record or undefined
+// Behavior
+// Test the firstName field for a match with the firstName argument
+const findEmployeeByFirstName = (employees, firstName) => {
+  // [
+  //         ["Loki", "Laufeysson-Odinsson", "HR Representative", 35],
+  //         ["Natalia", "Romanov", "CEO", 150]
+  //       ]
+  let employee = employees.find(emp => emp.firstName === firstName)
+  return employee
 }
 
 
