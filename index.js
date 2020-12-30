@@ -37,10 +37,17 @@ const createTimeOutEvent = (employeeRecord, dateTime) => {
 }
 
 const hoursWorkedOnDate = (employeeRecord, date) => {
-  let timeInHour = employeeRecord.timeInEvents.find(event => event.date === date).hour
-  let timeOutHour = employeeRecord.timeOutEvents.find(event => event.date === date).hour
-  let hoursWorked = (timeOutHour - timeInHour) / 100
-  return hoursWorked
+  try {
+    let timeInHour = employeeRecord.timeInEvents.find(event => event.date === date).hour
+    let timeOutHour = employeeRecord.timeOutEvents.find(event => event.date === date).hour
+    let hoursWorked = (timeOutHour - timeInHour) / 100
+    return hoursWorked
+  } catch (err) {
+    // Raise an exception if a timeIn is found without a matching timeOut
+    if (timeInHour.split(" ")[0] !== timeOutHour.split(" ")[0]) {
+      console.error(err.message)
+    }
+  }
 }
 
 const wagesEarnedOnDate = (employeeRecord, date) => {
