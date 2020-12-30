@@ -44,6 +44,7 @@ const hoursWorkedOnDate = (employeeRecord, date) => {
     return hoursWorked
   } catch (err) {
     // Raise an exception if a timeIn is found without a matching timeOut
+    err.message = "Dates do not match!"
     if (timeInHour.split(" ")[0] !== timeOutHour.split(" ")[0]) {
       console.error(err.message)
     }
