@@ -31,3 +31,9 @@ function createTimeOutEvent(employee, time) {
     employee.timeOutEvents.push(timeOut)
     return employee
 }
+
+function hoursWorkedOnDate(employee, date) {
+    let timeIn = employee.timeInEvents.find(e => e.date).hour;
+    let timeOut = employee.timeOutEvents.find(e => e.date).hour;
+    return (timeOut - timeIn)/100
+}
