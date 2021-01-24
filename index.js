@@ -42,6 +42,6 @@ function hoursWorkedOnDate(employee, date) {
     let punchIn = employee.timeInEvents.find(element => element.date === date);
     let punchOut = employee.timeOutEvents.find(element => element.date === date);
 
-    let hoursWorked = punchIn - punchOut
+    let hoursWorked = punchIn.hour - punchOut.hour
     return hoursWorked
 }
