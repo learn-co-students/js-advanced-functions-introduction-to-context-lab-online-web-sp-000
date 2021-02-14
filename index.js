@@ -34,3 +34,17 @@ function createTimeOutEvent(employeeObj, dateStamp) {
   employeeObj.timeOutEvents.push(newObj);
   return employeeObj
 }
+
+function hoursWorkedOnDate (object, date) {
+  if (date.slice(0, 11) === object.timeInEvents[0].date){
+    let clockIn = object.timeInEvents[0].hour
+    let clockOut = object.timeOutEvents[0].hour
+    let totalHours = (clockOut - clockIn) / 100
+    return totalHours
+  }
+}
+
+function wagesEarnedOnDate (object, date) {
+  let check = hoursWorkedOnDate(object, date) * (object.payPerHour)
+  return check
+}
