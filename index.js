@@ -38,10 +38,9 @@ function createTimeOutEvent(empRec, dT) {
 }
 
 function hoursWorkedOnDate(empRec, day) {
-  let num;
   let check = (el) => el.date === day;
   let ind = empRec.timeInEvents.findIndex(check);
-  return num = (empRec.timeOutEvents[ind].hour - empRec.timeInEvents[ind].hour)/100;
+  return (empRec.timeOutEvents[ind].hour - empRec.timeInEvents[ind].hour)/100;
   
 }
 
