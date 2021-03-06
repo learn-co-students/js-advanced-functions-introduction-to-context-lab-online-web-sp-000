@@ -51,3 +51,32 @@ function hoursWorkedOnDate(employeeRecord, date) {
 
   return (timeOutEvent.hour - timeInEvent.hour) / 100;
 }
+
+function wagesEarnedOnDate(employeeRecord, date) {
+  const totalHours = hoursWorkedOnDate(employeeRecord, date);
+  return employeeRecord.payPerHour * totalHours;
+}
+
+function allWagesFor(employeeRecord) {
+  let datesWorked = employeeRecord.timeOutEvents.map(event => {
+    return event.date;
+  });
+  let wagesPayable = datesWorked.reduce(function(accumulator, date) {
+    return accumulator + wagesEarnedOnDate(employeeRecord, date);
+  }, 0);
+
+  return wagesPayable;
+}
+function findEmployeeByFirstName(employeeRecords, firstName) {
+  return employeeRecords.find(record => {
+    return record.firstName === firstName;
+  });
+}
+
+function calculatePayroll(employeeRecords) {
+  return employeeRecords.reduce(function(accumulator, record) {
+    return accumulator + allWagesFor(record);
+  }, 0);
+}
+
+
