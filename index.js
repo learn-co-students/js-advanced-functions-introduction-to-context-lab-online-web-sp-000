@@ -67,6 +67,7 @@ function allWagesFor(employeeRecord) {
 
   return wagesPayable;
 }
+
 function findEmployeeByFirstName(employeeRecords, firstName) {
   return employeeRecords.find(record => {
     return record.firstName === firstName;
@@ -74,6 +75,9 @@ function findEmployeeByFirstName(employeeRecords, firstName) {
 }
 
 function calculatePayroll(employeeRecords) {
+  // iterate through each employee record and gather indivual employee wages
+  // update the accumulator adding the returned employee wages during each iteration
+  // Set startpoint as 0, otherwise reducing begins at index 1 instead.
   return employeeRecords.reduce(function(accumulator, record) {
     return accumulator + allWagesFor(record);
   }, 0);
