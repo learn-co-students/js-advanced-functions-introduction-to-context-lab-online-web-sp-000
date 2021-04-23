@@ -86,3 +86,22 @@ function allWagesFor(employeeRecord) {
 
   // return aggregate
 }
+// function reducer(employees) {
+//   return employees
+// }
+
+// function employeeWages(total, employeeWage) {
+//   return total + employeeWage
+// }
+
+function calculatePayroll(employees) {
+
+  const eachTotalWage = employees.map(employee => {
+      return allWagesFor(employee)
+  });
+
+  return eachTotalWage.reduce( (total, currWage) => {
+    return total + currWage
+  }, 0)
+
+}
