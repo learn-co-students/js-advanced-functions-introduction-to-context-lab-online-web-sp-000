@@ -14,23 +14,18 @@ function createEmployeeRecords(arr) {
     return arr.map(e => createEmployeeRecord(e))
 }
 
-function createTimeInEvent(record, time) {
-    const timeEvent = {
-        type: 'TimeIn',
-        hour: parseInt(time.split(" ")[1]),
-        date: time.split(" ")[0]
-    }
+function getTimeEvent(time, type) {
+    return { type: type, hour: parseInt(time.split(" ")[1]), date: time.split(" ")[0] }
+}
 
+function createTimeInEvent(record, time) {
+    const timeEvent = getTimeEvent(time, 'TimeIn')
     record.timeInEvents.push(timeEvent)
     return record
 }
 
 function createTimeOutEvent(record, time) {
-    const timeEvent = {
-        type: 'TimeOut',
-        hour: parseInt(time.split(" ")[1]),
-        date: time.split(" ")[0]
-    }
+    const timeEvent = getTimeEvent(time, 'TimeOut')
     record.timeOutEvents.push(timeEvent)
     return record
 }
