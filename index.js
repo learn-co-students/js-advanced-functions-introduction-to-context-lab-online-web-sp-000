@@ -42,20 +42,39 @@ function createTimeOutEvent(employeeRecord, date) {
 }
 
 function hoursWorkedOnDate(dateToSearch) { 
-    let timeIn = this.timeInEvents.find(timeInEvent => timeInEvent.date == dateToSearch)
+    let timeIn = this.timeInEvents.find(timeInEvent => timeInEvent.date === dateToSearch)
 
-    let timeOut = this.timeOutEvents.find(timeOutEvent => timeOutEvent.date == dateToSearch)
+    let timeOut = this.timeOutEvents.find(timeOutEvent => timeOutEvent.date === dateToSearch)
 
-    parseInt(timeOut.hour - timeIn.hour.toString().substring(0, 2))
+    return (timeOut.hour - timeIn.hour) / 100 
     //- parseInt(employeeRecord.timeInEvents[0].hour.toString().substring(0, 1)) 
 }
 
-function wagesEarnedOnDate(employeeRecord, date) { 
-   return hoursWorkedOnDate(employeeRecord, date) * employeeRecord.payPerHour
+function wagesEarnedOnDate(date) { 
+   return hoursWorkedOnDate.call(this, date) * this.payPerHour
 }
 
 function allWagesFor(employeeRecord) { 
+   let datesArray = employeeRecord.timeInEvents.map(object => object.date )
+   let wagesForEmployee = datesArray.reduce((wageTotal, date) => wageTotal + wagesEarnedOnDate.call(employeeRecord, date), 0)
+  return wagesForEmployee
+
+//.reduce((total, amount) => total + amount); 
+
 }
+
+function findEmployeeByFirstName(array, firstName) { 
+    return array.find(employee => employee.firstName === firstName)
+}
+
+function calculatePayroll(array) { 
+    let allWagesArray = array.map(employee => allWagesFor(employee))
+    return allWagesArray.reduce((total, amount) => total + amount)
+
+}
+
+//const map1 = array1.map(x => x * 2);
+
 // //JavaScript Object with keys:
 // firstName
 // familyName
